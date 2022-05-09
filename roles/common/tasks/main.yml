@@ -1,0 +1,21 @@
+---
+
+- name: Install list of packages
+  ansible.builtin.package:
+    name:
+      - vim
+      - git
+    state: latest
+
+      
+- name: add git vars
+  become_user: "{{ main_user }}"
+  git_config:
+    name: "{{ item.name }}"
+    scope: global
+    value: "{{ item.value }}"
+  with_items:
+    - { name: init.defaultBranch, value: main }
+    - { name: user.email, value: "martyn@automationlogic.com"}
+    - { name: user.name, value: askMartyn }
+
