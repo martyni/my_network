@@ -1,11 +1,18 @@
 ---
 
+- name: Update software
+  apt:
+    update_cache: "yes"
+    upgrade: "yes"
+  when: ansible_os_family == "Debian"
+
 - name: Install list of packages
   ansible.builtin.package:
-    name:
-      - vim
-      - git
+    name: "{{ item.name }}"
     state: latest
+  with_items:
+    - { name: vim }
+    - { name: git }
 
       
 - name: add git vars
