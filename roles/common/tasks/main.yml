@@ -11,6 +11,7 @@
     name: "{{ item.name }}"
     state: latest
   with_items:
+    - { name: ansible }
     - { name: vim }
     - { name: git }
     - { name: expect }
