@@ -1,0 +1,24 @@
+---
+
+- name: Install list of packages
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: latest
+  with_items:
+    - { name: ansible }
+
+
+- name: Cron ansible job
+  become_user: "{{ main_user }}"
+  ansible.builtin.cron:
+    name: "Run Ansible"
+    minute: "0"
+    job: "/home/{{ main_user }}/repos/{{ repo_name }}/run.sh"
+      
+- name: Update ansible job
+  become_user: "{{ main_user }}"
+  git:
+    name: clone repo
+    repo: "{{ repo }}"
+    update: yes
+
