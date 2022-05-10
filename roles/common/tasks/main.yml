@@ -13,6 +13,7 @@
   with_items:
     - { name: vim }
     - { name: git }
+    - { name: expect }
 
       
 - name: add git vars
