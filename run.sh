@@ -1,3 +1,5 @@
 #!/bin/bash -x
+LOG_FILE=~/last_run
 cd $(git rev-parse --show-toplevel)
-ansible-playbook default.yml
+ansible-playbook default.yml | tee $LOG_FILE
+date>> $LOG_FILE
