@@ -18,7 +18,6 @@
 - name: Update ansible job
   become_user: "{{ main_user }}"
   git:
-    name: clone repo
     repo: "{{ repo }}"
     update: yes
     dest: "/home/{{ main_user }}/repos/{{ repo_name }}"
