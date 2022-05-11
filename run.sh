@@ -1,5 +1,6 @@
 #!/bin/bash -x
 LOG_FILE=~/last_run
-cd $(git rev-parse --show-toplevel)
+WORK_DIR=$(echo "${BASH_SOURCE[0]}" | sed  -e"s/\/run\.sh//")
+cd $WORK_DIR
 unbuffer ansible-playbook default.yml | tee $LOG_FILE
 date>> $LOG_FILE
