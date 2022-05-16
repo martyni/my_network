@@ -1,15 +1,12 @@
 [default]
-localhost ansible_python_interpreter=/usr/bin/python3.9 main_user=martyni repo_name=my_network repo=git@github.com:martyni/my_network.git
-twitchbot.com ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi 
+localhost ansible_python_interpreter=/usr/bin/python3.9 main_user=martyni repo_name=my_network 
+twitchbot.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi 
 
 [ansible]
-localhost ansible_python_interpreter=/usr/bin/python3.9 main_user=martyni repo_name=my_network repo=git@github.com:martyni/my_network.git
+localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni repo_name=my_network 
 
 [pihole]
-localhost ansible_python_interpreter=/usr/bin/python3.9 main_user=martyni repo_name=pihole repo=git@github.com:pi-hole/pi-hole.git
+localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni repo_name=pihole 
 
 [twitchbot]
-twitchbot.com ansible_user=pi  main_user=pi repo_name=bottymcbotface repo=git@github.com:martyni/bottymcbotface.git
-
-
-#hello this is a test
+twitchbot.askmartyn ansible_user=pi  main_user=pi repo_name=bottymcbotface 
