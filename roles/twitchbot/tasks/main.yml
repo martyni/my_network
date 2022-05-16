@@ -21,7 +21,7 @@
   git:
     repo: "{{ web_repo }}"
     update: yes
-    dest: "/home/{{ main_user }}/repos/app"
+    dest: "/home/{{ main_user }}/repos/{{ web_repo_name}}"
 
 - name: Link to credentials
   ansible.builtin.file:

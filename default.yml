@@ -15,7 +15,6 @@
   roles:
     - common
 
-
 - name: pihole
   hosts: pihole
   become: yes
