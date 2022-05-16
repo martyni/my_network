@@ -7,6 +7,7 @@
     - ansible
   vars:
     repo: git@github.com:martyni/my_network.git
+    repo_name: my_network
 
 - name: common tasks
   hosts: all
@@ -22,6 +23,7 @@
     - pihole
   vars:
     repo: git@github.com:pi-hole/pi-hole.git
+    repo_name: pihole
 
 - name: twitchbot
   hosts: twitchbot
@@ -30,5 +32,6 @@
     - twitchbot
   vars:
     repo: git@github.com:martyni/bottymcbotface.git
+    repo_name: bottymcbotface
     web_repo: git@github.com:martyni/web_chat.git
-
+    web_repo_name: app

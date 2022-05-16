@@ -1,12 +1,12 @@
 [default]
-localhost ansible_python_interpreter=/usr/bin/python3.9 main_user=martyni repo_name=my_network 
+localhost ansible_python_interpreter=/usr/bin/python3.9 main_user=martyni 
 twitchbot.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi 
 
 [ansible]
-localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni repo_name=my_network 
+localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni 
 
 [pihole]
-localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni repo_name=pihole 
+localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni 
 
 [twitchbot]
-twitchbot.askmartyn ansible_user=pi  main_user=pi repo_name=bottymcbotface 
+twitchbot.askmartyn ansible_user=pi  main_user=pi 

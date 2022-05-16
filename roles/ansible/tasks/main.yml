@@ -6,14 +6,14 @@
   ansible.builtin.cron:
     name: "Run Ansible"
     minute: "0"
-    job: "/home/{{ main_user }}/repos/{{ repo_name }}/run.sh"
+    job: "/home/{{ main_user }}/repos/{{ repo }}/run.sh"
       
 - name: Update ansible job
   become_user: "{{ main_user }}"
   git:
     repo: "{{ repo }}"
     update: yes
-    dest: "/home/{{ main_user }}/repos/{{ repo_name }}"
+    dest: "/home/{{ main_user }}/repos/{{ repo }}"
 
 - name: ensure host file upto date
   ansible.builtin.copy:
