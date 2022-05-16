@@ -42,12 +42,11 @@
     src: "bot.service"
   register: systemctl_reread
       
-- name: Copy Bot service file accross
+- name: Copy Botweb service file accross
   ansible.builtin.template:
     dest: "/etc/systemd/system/botweb.service" 
     src: "botweb.service"
   register: systemctl_reread
-
 
 - name: reread systemctl config files
   ansible.builtin.service:
