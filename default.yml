@@ -6,8 +6,16 @@
   roles:
     - common
 
+
+- name: pihole
+  hosts: pihole
+  become: yes
+  roles:
+    - pihole
+
 - name: ansible host
-  hosts: 127.0.0.1
+  hosts: ansible
   become: yes
   roles:
     - ansible
+
