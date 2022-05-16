@@ -15,3 +15,8 @@
     update: yes
     dest: "/home/{{ main_user }}/repos/{{ repo_name }}"
 
+- name: ensure host file upto date
+  ansible.builtin.copy:
+    dest: /etc/ansible/hosts
+    src: hosts
+

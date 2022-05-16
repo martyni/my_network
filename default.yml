@@ -1,5 +1,11 @@
 ---
 
+- name: ansible host
+  hosts: ansible
+  become: yes
+  roles:
+    - ansible
+
 - name: common tasks
   hosts: all
   become: yes
@@ -13,9 +19,11 @@
   roles:
     - pihole
 
-- name: ansible host
-  hosts: ansible
+- name: twitchbot
+  hosts: twitchbot
   become: yes
   roles:
-    - ansible
+    - twitchbot
+  vars:
+    web_repo: git@github.com:martyni/web_chat.git
 

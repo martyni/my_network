@@ -1,0 +1,72 @@
+---
+
+- name: Install twitch software
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: latest
+  with_items:
+    - { name: gunicorn }
+    - { name: nodejs}
+    - { name: npm}
+
+- name: Update Twitchbot code
+  become_user: "{{ main_user }}"
+  git:
+    repo: "{{ repo }}"
+    update: yes
+    dest: "/home/{{ main_user }}/repos/{{ repo_name }}"
+
+- name: Update Twitch webserver code
+  become_user: "{{ main_user }}"
+  git:
+    repo: "{{ web_repo }}"
+    update: yes
+    dest: "/home/{{ main_user }}/repos/app"
+
+- name: Link to credentials
+  ansible.builtin.file:
+    src: "/home/{{ main_user }}/.creds.js"
+    dest: "/home/{{ main_user }}/repos/{{ repo_name }}/creds.js"
+    owner: "{{ main_user }}"
+    group: "{{ main_user }}"
+    state: link
+
+- name: Install packages based on package.json using the npm
+  npm:
+    path: "/home/{{ main_user }}/repos/{{ repo_name }}/"
+    state: present
+      
+- name: Copy Bot service file accross
+  ansible.builtin.template:
+    dest: "/etc/systemd/system/bot.service" 
+    src: "bot.service"
+  register: systemctl_reread
+      
+- name: Copy Bot service file accross
+  ansible.builtin.template:
+    dest: "/etc/systemd/system/botweb.service" 
+    src: "botweb.service"
+  register: systemctl_reread
+
+
+- name: reread systemctl config files
+  ansible.builtin.service:
+    daemon_reload: yes
+  when: systemctl_reread.changed
+
+- name: ensure bot service running
+  ansible.builtin.service:
+    name: "bot"
+    enabled: yes
+    state: started  
+
+- name: ensure botweb service running
+  ansible.builtin.service:
+    name: "botweb"
+    enabled: yes
+    state: started  
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: twitchbot
+
