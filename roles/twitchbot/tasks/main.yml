@@ -15,6 +15,7 @@
     repo: "{{ repo }}"
     update: yes
     dest: "/home/{{ main_user }}/repos/{{ repo_name }}"
+  register: bot_code
 
 - name: Update Twitch webserver code
   become_user: "{{ main_user }}"
@@ -22,6 +23,7 @@
     repo: "{{ web_repo }}"
     update: yes
     dest: "/home/{{ main_user }}/repos/{{ web_repo_name}}"
+  register: web_code
 
 - name: Link to credentials
   ansible.builtin.file:
@@ -52,6 +54,20 @@
   ansible.builtin.service:
     daemon_reload: yes
   when: systemctl_reread.changed
+
+- name: ensure bot service restarted after update
+  ansible.builtin.service:
+    name: "bot"
+    enabled: yes
+    state: restarted
+  when: bot_code.changed
+
+- name: ensure botweb service restarted after update
+  ansible.builtin.service:
+    name: "botweb"
+    enabled: yes
+    state: restarted
+  when: web_code.changed
 
 - name: ensure bot service running
   ansible.builtin.service:
