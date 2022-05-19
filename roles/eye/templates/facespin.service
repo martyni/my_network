@@ -1,0 +1,15 @@
+
+[Unit]
+Description=Facespinning service
+After=network.target
+
+[Service]
+ExecStart=/home/{{ main_user }}/{{ repo_name }}/example/facespin.py
+WorkingDirectory=/home/{{ main_user }}/{{ repo_name }}/example
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User={{ main_user }}
+
+[Install]
+WantedBy=multi-user.target

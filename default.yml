@@ -40,3 +40,5 @@
   become: yes
   roles:
     - eye
+  vars:
+     repo_name: facespin
