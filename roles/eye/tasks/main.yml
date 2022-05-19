@@ -1,15 +1,10 @@
 ---
 
-- name: install screen dependancies
-  get_url:
-    url: http://www.airspayce.com/mikem/bcm2835/bcm2835-1.68.tar.gz
-    dest: "/home/{{ main_user }}/bcm2835-1.68.tar.gz"
-    mode: '0740'
-
-- name: Extract foo.tgz into /var/lib/foo
+- name: Extract bcm module 
   ansible.builtin.unarchive:
-    remote_src: "/home/{{ main_user }}/bcm2835-1.68.tar.gz"
+    src: "http://www.airspayce.com/mikem/bcm2835/bcm2835-1.68.tar.gz"
     dest: "/home/{{ main_user }}/bcm2835-1.68"
+    remote_src: yes
     owner: "{{ main_user }}"
 
 
@@ -37,25 +32,8 @@
     - { name: spidev }
       
 - name: install screen dependancies
-  get_url:
-    url: https://www.waveshare.net/w/upload/a/a8/LCD_Module_RPI_code.7z
+  ansible.builtin.unarchive:
+    src: "https://www.waveshare.net/w/upload/a/a8/LCD_Module_RPI_code.7z"
     dest: "/home/{{ main_user }}/LCD_Module_RPI_code.7z"
     mode: '0740'
-
-- name: Extract foo.tgz into /var/lib/foo
-  ansible.builtin.unarchive:
-    remote_src: "/home/{{ main_user }}/LCD_Module_RPI_code.7z"
-    dest: "/home/{{ main_user }}/LCD_Module_RPI_code"
-    owner: "{{ main_user }}"
-
-- name: add git vars
-  become_user: "{{ main_user }}"
-  git_config:
-    name: "{{ item.name }}"
-    scope: global
-    value: "{{ item.value }}"
-  with_items:
-    - { name: init.defaultBranch, value: main }
-    - { name: user.email, value: "martyn@automationlogic.com"}
-    - { name: user.name, value: askMartyn }
-
+    remote_src: yes
