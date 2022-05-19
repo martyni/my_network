@@ -11,3 +11,6 @@ localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni
 
 [twitchbot]
 twitchbot.askmartyn ansible_user=pi  main_user=pi 
+
+[eye]
+dev.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi
