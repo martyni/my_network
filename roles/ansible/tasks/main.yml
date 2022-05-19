@@ -19,5 +19,6 @@
   ansible.builtin.copy:
     dest: /etc/ansible/hosts
     src: hosts
-  meta: refresh_inventory
+
+- meta: refresh_inventory
 
