@@ -34,3 +34,9 @@
     repo_name: bottymcbotface
     web_repo: git@github.com:martyni/web_chat.git
     web_repo_name: app
+
+- name: eye
+  hosts: eye
+  become: yes
+  roles:
+    - eye
