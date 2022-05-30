@@ -1,9 +1,11 @@
 ---
 
-- name: Update software
+- name: Update software and remove older software
   apt:
     update_cache: "yes"
     upgrade: "yes"
+    autoremove: "yes"
+    purge: "yes"
   when: ansible_os_family == "Debian"
 
 - name: Install list of packages
@@ -16,7 +18,7 @@
     - { name: git }
     - { name: expect }
 
-      
+    
 - name: add git vars
   become_user: "{{ main_user }}"
   git_config:
