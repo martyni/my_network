@@ -46,3 +46,4 @@
     state: latest
   with_items:
     - { name: virtualenv }
+    - { name: opencv-contrib-python }
