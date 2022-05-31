@@ -40,10 +40,20 @@
     regexp: '^CONF_SWAPSIZE='
     line: CONF_SWAPSIZE=2048
 
-- name: Install list of packages
+- name: flip display
+  ansible.builtin.lineinfile:
+    path: /boot/config.txt
+    regexp: '^lcd_rotate'
+    line: lcd_rotate=2
+
+- name: Install python packages
   ansible.builtin.pip:
     name: "{{ item.name }}"
     state: latest
   with_items:
     - { name: virtualenv }
     - { name: opencv-contrib-python }
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: cambot      
