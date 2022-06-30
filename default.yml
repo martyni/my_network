@@ -48,9 +48,10 @@
   roles:
     - eye
   vars:
+    repo_name: facespin
 
- - name: Fileserver     repo_name: facespin
-   hosts: eye
-   become: yes
-   roles:
-     - fileserver
+- name: Fileserver     
+  hosts: eye
+  become: yes
+  roles:
+    - fileserver
