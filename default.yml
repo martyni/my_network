@@ -1,5 +1,6 @@
 ---
 
+
 - name: ansible host
   hosts: ansible
   become: yes
@@ -47,4 +48,9 @@
   roles:
     - eye
   vars:
-     repo_name: facespin
+
+ - name: Fileserver     repo_name: facespin
+   hosts: eye
+   become: yes
+   roles:
+     - fileserver

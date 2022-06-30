@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  tasks:
+    - local_action:
+        command ansible-galaxy collection install community.general 
+

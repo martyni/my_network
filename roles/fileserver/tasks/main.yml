@@ -1,0 +1,48 @@
+---
+- name: Install list of packages
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: latest
+  with_items:
+    - { name: btrfs-progs }
+    - { name: samba }
+    - { name: samba-common-bin }
+
+
+- name: Create a btrfs filesystem on /dev/sdb1 and check disk blocks
+  filesystem:
+    fstype: btrfs
+    dev: /dev/sda
+    opts: -L 'store'
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: /mount
+    state: directory
+    owner: "{{ main_user }}"
+    mode: '0755'
+
+- name: Mount up device by label
+  ansible.posix.mount:
+    path: /mount
+    src: LABEL=store
+    fstype: btrfs
+    state: mounted
+
+- name: Samba config
+  ansible.builtin.blockinfile:
+    path: /etc/samba/smb.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK "
+    block: |
+       [pimylifeupshare]
+       path = /mount
+       writeable=Yes
+       create mask=0777
+       directory mask=0777
+       public=no 
+
+- name: Start Samba service
+  ansible.builtin.service:
+    name: smbd
+    enabled: yes
+    state: started
