@@ -1,6 +1,5 @@
 ---
 
-
 - name: ansible host
   hosts: ansible
   become: yes
