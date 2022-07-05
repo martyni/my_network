@@ -9,7 +9,7 @@
     - { name: samba-common-bin }
 
 
-- name: Create a btrfs filesystem on /dev/sdb1 and check disk blocks
+- name: Create a btrfs filesystem on /dev/sda and check disk blocks
   filesystem:
     fstype: btrfs
     dev: /dev/sda
