@@ -1,7 +1,5 @@
 ---
 
-
-
 - name: ansible host
   hosts: ansible
   become: yes
@@ -10,7 +8,6 @@
   vars:
     repo: git@github.com:martyni/my_network.git
     repo_name: my_network
-
 
 - name: common tasks
   hosts: all
