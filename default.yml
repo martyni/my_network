@@ -1,5 +1,6 @@
 ---
 
+
 - name: ansible host
   hosts: ansible
   become: yes
@@ -41,6 +42,12 @@
     web_repo: git@github.com:martyni/web_chat.git
     web_repo_name: app
 
+- name: Fileserver     
+  hosts: eye
+  become: yes
+  roles:
+    - fileserver
+
 - name: eye
   hosts: eye
   become: yes
@@ -48,9 +55,3 @@
     - eye
   vars:
     repo_name: facespin
-
-- name: Fileserver     
-  hosts: eye
-  become: yes
-  roles:
-    - fileserver

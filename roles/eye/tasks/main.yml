@@ -22,6 +22,7 @@
     name: "{{ item.name }}"
     state: latest
   with_items:
+    - { name: imagemagick }
     - { name: python3-pip }
     - { name: python3-numpy }
     - { name: p7zip-full }
@@ -54,10 +55,17 @@
   register: facespin_code  
 
 - name: Download Alex face
+  become_user: "{{ main_user }}"
   ansible.builtin.get_url:
     url: https://rustyquill.com/wp-content/uploads/2022/01/Newall-Alexander.jpg
     dest: "/home/{{ main_user }}/Pictures/Alex_face.jpg"
-    mode: '0440'
+  
+- name: crop face picture
+  become_user: "{{ main_user }}"
+  ansible.builtin.command:
+    cmd: "/usr/bin/convert  /home/{{ main_user }}/Pictures/Alex_face.jpg -crop 240x240+106+17 /home/{{ main_user }}/Pictures/alexanderjnewall.jpg"
+    creates: "/home/{{ main_user }}/Pictures/alexanderjnewall.jpg"
+  register: face  
 
 - name: Copy Bot service file accross
   ansible.builtin.template:
@@ -75,7 +83,7 @@
     name: "facespin"
     enabled: yes
     state: restarted
-  when: facespin_code.changed
+  when: facespin_code.changed or face.changed
 
 
 - name: ensure face spinning service running
