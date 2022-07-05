@@ -1,6 +1,55 @@
 ---
 
-- name: Install list of packages
+- name: ensure motion directory in home folder
+  become_user: "{{ main_user }}"
+  file:
+    path: "/home/{{ main_user }}/motion"
+    state: directory
+
+- name: "ensure motion service directory is owned by {{ main_user }}"
+  file:
+    path: "/run/shm/"
+    state: directory
+    owner: "{{ main_user }}"
+
+- name: Unarchive a camera server
+  ansible.builtin.get_url:
+    url: "https://www.dropbox.com/s/6ruqgv1h65zufr6/motion-mmal-lowflyerUK-20151114.tar.gz"
+    dest: "/home/{{ main_user }}/motion.tar.gz"
+    backup: yes
+  register: motion_code
+
+- name: Run command if /path/to/database does not exist (with 'cmd' parameter)
+  ansible.builtin.command:
+    cmd: "tar -zxvf motion-mmal-lowflyerUK-20151114.tar.gz -C /home/{{ main_user }}/motion/"
+    creates: "/home/{{ main_user }}/motion/motion"
+
+
+- name: Copy Motion service file accross
+  ansible.builtin.template:
+    dest: "/etc/systemd/system/motion.service" 
+    src: "motion.service"
+  register: systemctl_reread
+
+- name: reread systemctl config files
+  ansible.builtin.service:
+    daemon_reload: yes
+  when: systemctl_reread.changed
+
+- name: ensure motion service restarted after update
+  ansible.builtin.service:
+    name: "motion"
+    enabled: yes
+    state: restarted
+  when: motion_code.changed
+
+- name: ensure motion service running
+  ansible.builtin.service:
+    name: "motion"
+    enabled: yes
+    state: started  
+
+- name: Install list of packages for https://raspberrytips.com/raspberry-pi-camera-as-webcam/
   ansible.builtin.package:
     name: "{{ item.name }}"
     state: latest
@@ -33,6 +82,11 @@
     - { name: libqt5test5 }
     - { name: python3-pyqt5 }
     - { name: python3-dev }
+    - { name: motion              }
+    - { name: libavutil-dev       }
+    - { name: libjpeg62-turbo-dev }
+    - { name: libpq-dev           }
+    - { name: libswresample-dev   }
 
 - name: configure swap memory
   ansible.builtin.lineinfile:
@@ -57,3 +111,6 @@
 - name: Set hostname
   ansible.builtin.hostname:
     name: cambot      
+
+
+

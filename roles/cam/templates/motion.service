@@ -1,0 +1,15 @@
+
+[Unit]
+Description=Motion camera service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/motion -c /home/{{ main_user }}/motion/motion-mmalcam-both.conf
+WorkingDirectory=/home/{{ main_user }}/motion/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User={{ main_user }}
+
+[Install]
+WantedBy=multi-user.target

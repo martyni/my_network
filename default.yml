@@ -1,6 +1,7 @@
 ---
 
 
+
 - name: ansible host
   hosts: ansible
   become: yes
@@ -10,11 +11,6 @@
     repo: git@github.com:martyni/my_network.git
     repo_name: my_network
 
-- name: cam tasks
-  hosts: cam
-  become: yes
-  roles:
-    - cam
 
 - name: common tasks
   hosts: all
@@ -55,3 +51,9 @@
     - eye
   vars:
     repo_name: facespin
+
+- name: cam tasks
+  hosts: cam
+  become: yes
+  roles:
+    - cam
