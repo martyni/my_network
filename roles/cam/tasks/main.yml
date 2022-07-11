@@ -72,6 +72,7 @@
     - { name: virtualenv }
     - { name: opencv-contrib-python }
 
+
 - name: Set hostname
   ansible.builtin.hostname:
     name: cambot      
@@ -79,7 +80,7 @@
 - name: Unarchive a camera server
   ansible.builtin.get_url:
     url: "https://www.dropbox.com/s/6ruqgv1h65zufr6/motion-mmal-lowflyerUK-20151114.tar.gz"
-    dest: "/home/{{ main_user }}/motion.tar.gz"
+    dest: "/home/{{ main_user }}/motion-mmal-lowflyerUK-20151114.tar.gz"
     backup: yes
   register: motion_code
 
