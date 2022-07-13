@@ -1,5 +1,13 @@
 ---
 
+
+- name: "Set variables"
+  set_fact:
+    repo: git@github.com:martyni/bottymcbotface.git
+    repo_name: bottymcbotface
+    web_repo: git@github.com:martyni/web_chat.git
+    web_repo_name: app  
+
 - name: Install twitch software
   ansible.builtin.package:
     name: "{{ item.name }}"

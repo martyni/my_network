@@ -1,5 +1,9 @@
 ---
 
+- name: "Set variables"
+  set_fact:
+    repo: git@github.com:pi-hole/pi-hole.git
+    repo_name: pihole
 
 - name: Install list of packages
   ansible.builtin.package:
@@ -8,8 +12,6 @@
   with_items:
     - { name: curl }
 
-      
-
 - name: Update pihole local repo
   become_user: "{{ main_user }}"
   git:
@@ -17,7 +19,6 @@
     update: yes
     dest: "/home/{{ main_user }}/repos/{{ repo_name }}"
   register: pihole
-
 
 - name: Set hostname
   ansible.builtin.hostname:

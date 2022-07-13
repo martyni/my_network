@@ -1,5 +1,8 @@
 ---
 
+- name: "Set variables"
+  set_fact:
+    repo_name: facespin
 
 - name: Install list of packages
   ansible.builtin.file:
