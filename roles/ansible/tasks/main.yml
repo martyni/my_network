@@ -1,5 +1,9 @@
 ---
 
+- name: "Set variables"
+  set_fact:
+    repo: git@github.com:martyni/my_network.git
+    repo_name: my_network
 
 - name: Ensure Ansible code is up to date and stop run if not
   become_user: "{{ main_user }}"
@@ -8,10 +12,6 @@
     update: yes
     dest: "/home/{{ main_user }}/repos/{{ repo_name }}"
 
-- name: "Set variables"
-  set_fact:
-    repo: git@github.com:martyni/my_network.git
-    repo_name: my_network
 
 - name: Ensure Cron ansible job present
   become_user: "{{ main_user }}"
