@@ -70,7 +70,7 @@
     state: latest
   with_items:
     - { name: virtualenv }
-    - { name: opencv-contrib-python }
+    #- { name: opencv-contrib-python } this check is causing a huge load on pi
 
 
 - name: Set hostname
