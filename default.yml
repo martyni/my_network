@@ -3,41 +3,55 @@
 - name: ansible host
   hosts: ansible
   become: yes
+  async: 45
+  poll: 0
   roles:
     - ansible
 
 - name: common tasks
   hosts: all
   become: yes
+  async: 45
+  poll: 0
   roles:
     - common
 
 - name: pihole
   hosts: pihole
   become: yes
+  async: 45
+  poll: 0
   roles:
     - pihole
 
 - name: twitchbot
   hosts: twitchbot
   become: yes
+  async: 45
+  poll: 0
   roles:
     - twitchbot
 
 - name: Fileserver     
   hosts: eye
   become: yes
+  async: 45
+  poll: 0
   roles:
     - fileserver
 
 - name: eye
   hosts: eye
   become: yes
+  async: 45
+  poll: 0
   roles:
     - eye
 
 - name: cam tasks
   hosts: cam
   become: yes
+  async: 45
+  poll: 0
   roles:
     - cam
