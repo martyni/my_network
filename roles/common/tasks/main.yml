@@ -1,21 +1,21 @@
 ---
 
 - name: Update software and remove older software
+  async: 45
+  poll: 0
   apt:
     update_cache: "yes"
     upgrade: "yes"
     autoremove: "yes"
     purge: "yes"
-    async: 45
-    poll: 0
   when: ansible_os_family == "Debian"
 
 - name: Install list of packages
+  async: 45
+  poll: 0
   ansible.builtin.package:
     name: "{{ item.name }}"
     state: latest
-    async: 45
-    poll: 0
   with_items:
     - { name: ansible }
     - { name: vim }
@@ -24,13 +24,13 @@
 
     
 - name: add git vars
+  async: 45
+  poll: 0
   become_user: "{{ main_user }}"
   git_config:
     name: "{{ item.name }}"
     scope: global
     value: "{{ item.value }}"
-    async: 45
-    poll: 0
   with_items:
     - { name: init.defaultBranch, value: main }
     - { name: user.email, value: "martyn@automationlogic.com"}
