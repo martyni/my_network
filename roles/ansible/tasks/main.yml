@@ -1,12 +1,16 @@
 ---
 
 - name: "Set variables"
+  async: 45
+  poll: 0
   set_fact:
     repo: git@github.com:martyni/my_network.git
     repo_name: my_network
 
 - name: Ensure Ansible code is up to date and stop run if not
   become_user: "{{ main_user }}"
+  async: 45
+  poll: 0
   git:
     repo: "{{ repo }}"
     update: yes
@@ -15,6 +19,8 @@
 
 - name: Ensure Cron ansible job present
   become_user: "{{ main_user }}"
+  async: 45
+  poll: 0
   ansible.builtin.cron:
     name: "Run Ansible"
     minute: "0"
@@ -22,6 +28,8 @@
       
 
 - name: Ensure ansible host file upto date
+  async: 45
+  poll: 0
   ansible.builtin.copy:
     dest: /etc/ansible/hosts
     src: hosts
