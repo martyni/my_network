@@ -7,8 +7,6 @@
 
 - name: Ensure Ansible code is up to date and stop run if not
   become_user: "{{ main_user }}"
-  async: 45
-  poll: 0
   git:
     repo: "{{ repo }}"
     update: yes
@@ -17,8 +15,6 @@
 
 - name: Ensure Cron ansible job present
   become_user: "{{ main_user }}"
-  async: 45
-  poll: 0
   ansible.builtin.cron:
     name: "Run Ansible"
     minute: "0"
