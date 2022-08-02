@@ -26,8 +26,6 @@
       
 
 - name: Ensure ansible host file upto date
-  async: 45
-  poll: 0
   ansible.builtin.copy:
     dest: /etc/ansible/hosts
     src: hosts
