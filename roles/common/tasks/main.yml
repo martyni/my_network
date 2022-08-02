@@ -6,12 +6,16 @@
     upgrade: "yes"
     autoremove: "yes"
     purge: "yes"
+    async: 45
+    poll: 0
   when: ansible_os_family == "Debian"
 
 - name: Install list of packages
   ansible.builtin.package:
     name: "{{ item.name }}"
     state: latest
+    async: 45
+    poll: 0
   with_items:
     - { name: ansible }
     - { name: vim }
@@ -25,6 +29,8 @@
     name: "{{ item.name }}"
     scope: global
     value: "{{ item.value }}"
+    async: 45
+    poll: 0
   with_items:
     - { name: init.defaultBranch, value: main }
     - { name: user.email, value: "martyn@automationlogic.com"}
