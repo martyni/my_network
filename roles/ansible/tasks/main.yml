@@ -1,8 +1,6 @@
 ---
 
 - name: "Set variables"
-  async: 45
-  poll: 0
   set_fact:
     repo: git@github.com:martyni/my_network.git
     repo_name: my_network
