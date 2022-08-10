@@ -1,8 +1,6 @@
 ---
 
 - name: Update software and remove older software
-  async: 45
-  poll: 0
   apt:
     update_cache: "yes"
     upgrade: "yes"
@@ -11,8 +9,6 @@
   when: ansible_os_family == "Debian"
 
 - name: Install list of packages
-  async: 45
-  poll: 0
   ansible.builtin.package:
     name: "{{ item.name }}"
     state: latest
@@ -24,8 +20,6 @@
 
     
 - name: add git vars
-  async: 45
-  poll: 0
   become_user: "{{ main_user }}"
   git_config:
     name: "{{ item.name }}"
