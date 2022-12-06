@@ -1,5 +1,12 @@
 ---
 
+- name: Install list of packages
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: latest
+  with_items:
+    - { name: ansible }
+
 - name: "Set variables"
   set_fact:
     repo: git@github.com:martyni/my_network.git
