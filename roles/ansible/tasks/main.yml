@@ -1,6 +1,6 @@
 ---
 
-- name: Install list of packages
+- name: Install Ansible
   ansible.builtin.package:
     name: "{{ item.name }}"
     state: latest
@@ -27,6 +27,18 @@
     minute: "0"
     job: "/home/{{ main_user }}/repos/{{ repo_name }}/run.sh"
       
+- name: Create Ansible directory
+  ansible.builtin.file:
+    path: /etc/ansible/
+    state: directory
+    recurse: yes
+    owner: {{ main_user }}
+    group: {{ main_user }}
+
+- name: Ensure ansible host file upto date
+  ansible.builtin.copy:
+    dest: /etc/ansible/hosts
+    src: hosts
 
 - name: Ensure ansible host file upto date
   ansible.builtin.copy:
