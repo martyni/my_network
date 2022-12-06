@@ -6,10 +6,10 @@ cam.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  
 zero2.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
 
 [ansible]
-localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni 
+zero2.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
 
 [pihole]
-localhost ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni 
+pihole.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni 
 
 [twitchbot]
 twitchbot.askmartyn ansible_user=pi  main_user=pi 
