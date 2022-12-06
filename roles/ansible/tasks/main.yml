@@ -31,9 +31,8 @@
   ansible.builtin.file:
     path: /etc/ansible/
     state: directory
-    recurse: yes
-    owner: {{ main_user }}
-    group: {{ main_user }}
+    owner: "{{ main_user }}"
+    group: "{{ main_user }}"
 
 - name: Ensure ansible host file upto date
   ansible.builtin.copy:
