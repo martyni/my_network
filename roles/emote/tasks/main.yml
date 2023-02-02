@@ -1,0 +1,54 @@
+---
+
+
+- name: "Set variables"
+  set_fact:
+    web_repo: git@github.com:martyni/emote_grabber.git
+    web_repo_name:   
+
+- name: Install emote software
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: latest
+  with_items:
+    - { name: gunicorn }
+
+
+- name: Update Twitch webserver code
+  become_user: "{{ main_user }}"
+  git:
+    repo: "{{ web_repo }}"
+    update: yes
+    force: yes
+    dest: "/home/{{ main_user }}/repos/{{ web_repo_name}}"
+  register: emote
+      
+      
+- name: Copy emote service file accross
+  ansible.builtin.template:
+    dest: "/etc/systemd/system/emote.service" 
+    src: "emote.service"
+  register: systemctl_reread
+
+- name: reread systemctl config files
+  ansible.builtin.service:
+    daemon_reload: yes
+  when: systemctl_reread.changed
+
+- name: ensure emote service restarted after update
+  ansible.builtin.service:
+    name: "emote"
+    enabled: yes
+    state: restarted
+  when: emote.changed
+
+- name: ensure emote service running
+  ansible.builtin.service:
+    name: "emote"
+    enabled: yes
+    state: started  
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: emotebot
+
