@@ -13,6 +13,7 @@
   with_items:
     - { name: gunicorn }
     - { name: firefox-esr }
+    - { name: chromium-chromedriver }
 
 - name: install emote grabber
   ansible.builtin.pip:
