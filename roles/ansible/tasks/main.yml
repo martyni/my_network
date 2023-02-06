@@ -46,3 +46,6 @@
 
 - meta: refresh_inventory
 
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: ansible
