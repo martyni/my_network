@@ -1,5 +1,6 @@
 ---
 
+
 - name: ansible host
   hosts: ansible
   become: yes
@@ -11,6 +12,12 @@
   become: yes
   roles:
     - common
+
+- name: emote
+  hosts: emote
+  become: yes
+  roles:
+    - emote
 
 - name: pihole
   hosts: pihole
