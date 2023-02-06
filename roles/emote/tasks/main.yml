@@ -12,7 +12,7 @@
     state: latest
   with_items:
     - { name: gunicorn }
-    - { name: firefox }
+    - { name: firefox-esr }
 
 - name: install emote grabber
   ansible.builtin.pip:
