@@ -18,9 +18,26 @@
 - name: install emote grabber
   ansible.builtin.pip:
     name: "{{ web_repo }}"
-
+  register: emote_code
 
 - name: Set hostname
   ansible.builtin.hostname:
     name: emotebot
 
+- name: Copy emote service file accross
+  ansible.builtin.template:
+    dest: "/etc/systemd/system/emote.service" 
+    src: "emote.service"
+  register: systemctl_reread
+
+- name: reread systemctl config files
+  ansible.builtin.service:
+    daemon_reload: yes
+  when: systemctl_reread.changed
+
+- name: ensure emote service restarted after update
+  ansible.builtin.service:
+    name: "emote"
+    enabled: yes
+    state: restarted
+  when: emote_code.changed
