@@ -39,12 +39,29 @@
     dest: /etc/ansible/hosts
     src: hosts
 
+
 - name: Ensure ansible host file upto date
   ansible.builtin.copy:
     dest: /etc/ansible/hosts
     src: hosts
 
 - meta: refresh_inventory
+
+- name: ensure ansible2ssh script is present
+  ansible.builtin.copy:
+    dest: "/home/{{ main_user }}/scripts/"
+    src: ansible2ssh.sh
+
+- name: ensure ansible2ssh script is present
+  ansible.builtin.copy:
+    dest: "/home/{{ main_user }}/scripts/"
+    src: ansible2ssh.sh
+
+- name: ensure ansible2ssh Cron is enabled
+  become_user: "{{ main_user }}"
+  ansible.builtin.cron:
+    name: "update ssh config"
+    job: "/home/{{ main_user }}/scripts/ansible2ssh.sh"
 
 - name: Set hostname
   ansible.builtin.hostname:
