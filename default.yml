@@ -1,10 +1,5 @@
 ---
 
-- name: emote
-  hosts: emote
-  become: yes
-  roles:
-    - emote
 
 - name: ansible host
   hosts: ansible
@@ -25,11 +20,18 @@
   roles:
     - pihole
 
+
 - name: twitchbot
   hosts: twitchbot
   become: yes
   roles:
     - twitchbot
+
+- name: emote
+  hosts: emote
+  become: yes
+  roles:
+    - emote
 
 - name: Fileserver     
   hosts: eye
