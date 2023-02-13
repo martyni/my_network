@@ -1,0 +1,13 @@
+---
+
+- name: Install Ansible
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: latest
+  with_items:
+    - { name: ansible }
+
+
+- name: Get tunnel command 
+
+

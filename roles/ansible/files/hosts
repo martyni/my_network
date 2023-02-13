@@ -1,5 +1,4 @@
 [default]
-localhost ansible_python_interpreter=/usr/bin/python3.9 main_user=martyni 
 twitchbot.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi 
 dev.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi
 cam.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
