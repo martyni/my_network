@@ -18,6 +18,6 @@
   become_user: "{{ main_user }}"
   ansible.builtin.cron:
     name: "Setup proxy"
-    minute: "*/10"
+    minute: "1, 10, 20, 30, 40, 50,"
     job: "{{ proxy_cron }}"
       
