@@ -1,0 +1,15 @@
+
+[Unit]
+Description=Gunicorn emote service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/gunicorn  --workers 1  --bind 0.0.0.0:5000 app:app 
+WorkingDirectory=/usr/local/lib/python3.9/dist-packages/emote_grabber/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User={{ main_user }}
+
+[Install]
+WantedBy=multi-user.target
