@@ -67,6 +67,7 @@
   ansible.builtin.template:
     dest: "/home/{{ main_user }}/scripts/copystatus.sh"
     src: "copystatus.sh"
+    mode: u=rwx
 
 - name: Ensure Cron ansible job present
   become_user: "{{ main_user }}"
@@ -79,3 +80,4 @@
   ansible.builtin.template:
     dest: "/home/{{ main_user }}/scripts/copystatus.py"
     src: "copystatus.py"
+    mode: u=rwx
