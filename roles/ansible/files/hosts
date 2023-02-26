@@ -28,4 +28,6 @@ pihole.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=mart
 [twitchbot]
 twitchbot.askmartyn ansible_user=pi  main_user=pi 
 
+[status]
+dev.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi
 
