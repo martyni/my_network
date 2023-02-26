@@ -5,7 +5,7 @@ import sys
 LOG_FILE = sys.argv[1]
 OUT_FILE = sys.argv[2]
 
-MATCH    = r"([a-zA-Z0-9]*)\.askmartyn\s*:\sok=([0-9])*\s*changed=([0-9])*\s*unreachable=([0-9])*\s*failed=([0-9])*\s*skipped=([0-9])*\s*rescued=([0-9])*\s*ignored=([0-9])*\s*"
+MATCH    = r"([a-zA-Z0-9]*)\.askmartyn\s*:\sok=([0-9]*)\s*changed=([0-9]*)\s*unreachable=([0-9]*)\s*failed=([0-9]*)\s*skipped=([0-9]*)\s*rescued=([0-9]*)\s*ignored=([0-9]*)\s*"
 
 
 STATUS = {}
