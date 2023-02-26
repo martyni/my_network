@@ -1,0 +1,7 @@
+---
+- name: status
+  hosts: status
+  become: yes
+  roles:
+    - status
+
