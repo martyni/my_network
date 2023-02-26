@@ -1,0 +1,10 @@
+---
+
+
+
+- name: emote
+  hosts: emote
+  become: yes
+  roles:
+    - emote
+

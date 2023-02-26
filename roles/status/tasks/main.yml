@@ -1,0 +1,31 @@
+---
+
+
+- name: "Set variables"
+  set_fact:
+    web_repo: git+http://github.com/martyni/status
+    web_repo_name: app 
+
+
+- name: install status service
+  ansible.builtin.pip:
+    name: "{{ web_repo }}"
+  register: status_code
+
+- name: Copy status service file accross
+  ansible.builtin.template:
+    dest: "/etc/systemd/system/status.service" 
+    src: "status.service"
+  register: systemctl_reread
+
+- name: reread systemctl config files
+  ansible.builtin.service:
+    daemon_reload: yes
+  when: systemctl_reread.changed
+
+- name: ensure status service restarted after update
+  ansible.builtin.service:
+    name: "status"
+    enabled: yes
+    state: restarted
+  when: status_code.changed

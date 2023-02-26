@@ -1,0 +1,11 @@
+---
+
+
+
+
+- name: twitchbot
+  hosts: twitchbot
+  become: yes
+  roles:
+    - twitchbot
+
