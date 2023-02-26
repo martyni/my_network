@@ -11,6 +11,8 @@
   set_fact:
     repo: git@github.com:martyni/my_network.git
     repo_name: my_network
+    remote_host: dev.askmartyn
+    log_file: "/home/{{ main_user }}/last_run"
 
 - name: Ensure Ansible code is up to date and stop run if not
   become_user: "{{ main_user }}"
@@ -52,11 +54,6 @@
     dest: "/home/{{ main_user }}/scripts/"
     src: ansible2ssh.sh
 
-- name: ensure ansible2ssh script is present
-  ansible.builtin.copy:
-    dest: "/home/{{ main_user }}/scripts/"
-    src: ansible2ssh.sh
-
 - name: ensure ansible2ssh Cron is enabled
   become_user: "{{ main_user }}"
   ansible.builtin.cron:
@@ -66,3 +63,13 @@
 - name: Set hostname
   ansible.builtin.hostname:
     name: ansible
+
+- name: add status sh scripts
+  ansible.builtin.template:
+    dest: "/home/{{ main_user }}/scripts/copystatus.sh"
+    src: "copystatus.sh"
+
+- name: add status py scripts
+  ansible.builtin.template:
+    dest: "/home/{{ main_user }}/scripts/copystatus.py"
+    src: "copystatus.py"
