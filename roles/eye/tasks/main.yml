@@ -56,7 +56,6 @@
   ansible.builtin.git:
     repo: git@github.com:martyni/facespin.git
     dest: "/home/{{ main_user }}/{{ repo_name }}"
-    force: yes 
   register: facespin_code  
 
 - name: Download Alex face
