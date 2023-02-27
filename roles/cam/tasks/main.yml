@@ -77,18 +77,20 @@
   ansible.builtin.hostname:
     name: cambot      
 
-- name: Unarchive a camera server
-  ansible.builtin.get_url:
+- name: download motion software
+  get_url:
     url: "https://www.dropbox.com/s/6ruqgv1h65zufr6/motion-mmal-lowflyerUK-20151114.tar.gz"
-    dest: "/home/{{ main_user }}/motion-mmal-lowflyerUK-20151114.tar.gz"
-    #backup: yes causes state to change and service to be restarted
+    http_agent: "Wget/version (linux-gnu)"
+    dest: /tmp/motion.tar.gz
   register: motion_code
 
-- name: Run command if /path/to/database does not exist (with 'cmd' parameter)
-  ansible.builtin.command:
-    cmd: "tar -zxvf motion-mmal-lowflyerUK-20151114.tar.gz -C /home/{{ main_user }}/motion/"
-    creates: "/home/{{ main_user }}/motion/motion"
-
+- name: Unarchive a camera server
+  ansible.builtin.unarchive:
+    src: /tmp/motion.tar.gz
+    dest: "/home/{{ main_user }}/motion"
+    owner: "{{ main_user }}"
+    remote_src: yes
+  when: motion_code.changed
 
 - name: Copy Motion service file accross
   ansible.builtin.template:

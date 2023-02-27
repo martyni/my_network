@@ -53,7 +53,7 @@
 
 - name: clone the facespin repo
   ansible.builtin.git:
-    repo: https://github.com/martyni/facespin.git
+    repo: git@github.com:martyni/facespin.git
     dest: "/home/{{ main_user }}/{{ repo_name }}"
     force: yes 
   register: facespin_code  

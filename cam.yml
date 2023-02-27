@@ -1,0 +1,7 @@
+---
+- name: cam
+  hosts: cam
+  become: yes
+  roles:
+    - cam
+
