@@ -52,6 +52,7 @@
   register: facespin_code
 
 - name: clone the facespin repo
+  become_user: "{{ main_user }}"
   ansible.builtin.git:
     repo: git@github.com:martyni/facespin.git
     dest: "/home/{{ main_user }}/{{ repo_name }}"
