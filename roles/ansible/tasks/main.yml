@@ -64,6 +64,7 @@
     name: ansible
 
 - name: add status sh scripts
+  become_user: "{{ main_user }}"
   ansible.builtin.template:
     dest: "/home/{{ main_user }}/scripts/copystatus.sh"
     src: "copystatus.sh"
@@ -77,6 +78,7 @@
     job: "cd /home/{{ main_user }}/scripts/; copystatus.sh"
 
 - name: add status py scripts
+  become_user: "{{ main_user }}"
   ansible.builtin.template:
     dest: "/home/{{ main_user }}/scripts/copystatus.py"
     src: "copystatus.py"
