@@ -74,7 +74,7 @@
   become_user: "{{ main_user }}"
   ansible.builtin.cron:
     name: "copy_status"
-    minute: "*"
+    minute: "*/10"
     job: "cd /home/{{ main_user }}/scripts/; ./copystatus.sh"
 
 - name: add status py scripts
