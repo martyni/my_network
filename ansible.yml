@@ -1,0 +1,7 @@
+---
+- name: ansible
+  hosts: ansible
+  become: yes
+  roles:
+    - ansible
+
