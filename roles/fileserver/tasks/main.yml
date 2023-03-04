@@ -25,7 +25,7 @@
 - name: Mount up device by label
   ansible.posix.mount:
     path: /mount
-    src: LABEL=store
+    src: /dev/sda
     fstype: btrfs
     state: mounted
 

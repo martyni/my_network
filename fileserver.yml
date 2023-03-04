@@ -1,0 +1,10 @@
+---
+
+
+
+- name: fileserver
+  hosts: eye
+  become: yes
+  roles:
+    - fileserver
+
