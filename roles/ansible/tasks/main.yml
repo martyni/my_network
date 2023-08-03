@@ -26,7 +26,7 @@
   become_user: "{{ main_user }}"
   ansible.builtin.cron:
     name: "Run Ansible"
-    minute: "0"
+    minute: "30"
     job: "/home/{{ main_user }}/repos/{{ repo_name }}/run.sh"
       
 - name: Create Ansible directory
