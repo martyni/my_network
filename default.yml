@@ -7,6 +7,12 @@
   roles:
     - ansible
 
+- name: ansible host
+  hosts: phone
+  become: yes
+  roles:
+    - phone
+
 - name: common tasks
   hosts: all
   become: yes

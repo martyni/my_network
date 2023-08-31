@@ -1,0 +1,7 @@
+---
+- name: phone
+  hosts: phone
+  become: yes
+  roles:
+    - phone
+
