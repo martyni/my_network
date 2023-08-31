@@ -9,7 +9,7 @@ zero2.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni
 cam.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
 
 [phone]
-phone.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=asterisk  main_user=asterisk local_user=martyni
+phone.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=asterisk  main_user=asterisk
 
 [default]
 twitchbot.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi 
