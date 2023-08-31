@@ -10,6 +10,8 @@
 - name: ansible host
   hosts: phone
   become: yes
+  vars:
+     local_user: martyni
   roles:
     - phone
 
