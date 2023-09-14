@@ -1,4 +1,5 @@
 ---
+
 - name: Install list of packages
   ansible.builtin.package:
     name: "{{ item.name }}"
@@ -40,6 +41,7 @@
   ansible.posix.mount:
     path: /media/martyni/vol
     src: /dev/sdb1
+    fstype: fuseblk
     state: mounted
 
 - name: Samba config
@@ -59,18 +61,10 @@
        create mask=0777
        directory mask=0777
        public=no 
-  notify: 
-       - restart samba
-
-
-- name: restart samba
-  ansible.builtin.service:
-    name: smbd
-    enabled: yes
-    state: restarted
 
 - name: Start Samba service
   ansible.builtin.service:
     name: smbd
     enabled: yes
     state: started
+
