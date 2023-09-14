@@ -17,6 +17,13 @@
 #
 - name: Create a directory if it does not exist
   ansible.builtin.file:
+    path: /media/martyni/vol
+    state: directory
+    owner: "{{ main_user }}"
+    mode: '0755'
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
     path: /mount
     state: directory
     owner: "{{ main_user }}"
@@ -27,6 +34,12 @@
     path: /mount
     src: /dev/sda
     fstype: btrfs
+    state: mounted
+
+- name: Mount up device by label
+  ansible.posix.mount:
+    path: /media/martyni/vol
+    src: /dev/sdb1
     state: mounted
 
 - name: Samba config
@@ -40,6 +53,21 @@
        create mask=0777
        directory mask=0777
        public=no 
+       [archive]
+       path = /media/martyni/vol
+       writeable=Yes
+       create mask=0777
+       directory mask=0777
+       public=no 
+  notify: 
+       - restart samba
+
+
+- name: restart samba
+  ansible.builtin.service:
+    name: smbd
+    enabled: yes
+    state: restarted
 
 - name: Start Samba service
   ansible.builtin.service:
