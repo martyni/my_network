@@ -1,0 +1,31 @@
+---
+
+- name: Install list of packages
+  ansible.builtin.package:
+    name: "{{ item.name }}"
+    state: latest
+  with_items:
+    - { name: samba }
+    - { name: samba-common-bin }
+
+
+
+
+- name: Samba config
+  ansible.builtin.blockinfile:
+    path: /etc/samba/smb.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK "
+    block: |
+       [media]
+       path = /media/usb-Hitachi_HCS5C2020ALA632_DC42306106751B-0:0-part1
+       writeable=Yes
+       create mask=0777
+       directory mask=0777
+       public=no 
+
+- name: Start Samba service
+  ansible.builtin.service:
+    name: smbd
+    enabled: yes
+    state: started
+

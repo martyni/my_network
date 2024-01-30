@@ -13,7 +13,6 @@
   roles:
     - common
 
-
 - name: pihole
   hosts: pihole
   become: yes
@@ -33,6 +32,12 @@
   become: yes
   roles:
     - fileserver
+
+- name: Mediaserver     
+  hosts: brick
+  become: yes
+  roles:
+    - mediaserver
 
 - name: eye
   hosts: eye
