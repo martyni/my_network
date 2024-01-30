@@ -17,7 +17,6 @@
     - { name: vim }
     - { name: git }
     - { name: expect }
-    - { name: rpi-imager }
     - { name: jq }
 
     
