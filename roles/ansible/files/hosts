@@ -20,6 +20,8 @@ pihole.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=mart
 emote.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
 sense.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
 kenny.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
+brick ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
+
 
 [emote]
 emote.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
