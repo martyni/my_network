@@ -55,12 +55,6 @@
        create mask=0777
        directory mask=0777
        public=no 
-       [archive]
-       path = /media/martyni/vol
-       writeable=Yes
-       create mask=0777
-       directory mask=0777
-       public=no 
 
 - name: Start Samba service
   ansible.builtin.service:
