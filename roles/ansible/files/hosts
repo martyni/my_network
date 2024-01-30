@@ -2,15 +2,6 @@
 [ansible]
 zero2.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
 
-[proxy]
-zero2.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
-
-[cam]
-cam.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
-
-[phone]
-phone.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=asterisk  main_user=asterisk
-
 [default]
 twitchbot.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=pi  main_user=pi 
 dev.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni main_user=martyni
@@ -22,10 +13,6 @@ sense.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni
 kenny.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
 brick ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
 
-
-[emote]
-emote.askmartyn ansible_python_interpreter=/usr/bin/python3 ansible_user=martyni  main_user=martyni
-
 [eye]
 dev.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni main_user=martyni
 
@@ -34,9 +21,6 @@ pihole.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=mart
 
 [twitchbot]
 twitchbot.askmartyn ansible_user=pi  main_user=pi 
-
-[status]
-dev.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni main_user=martyni
 
 [fileserver]
 dev.askmartyn ansible_python_interpreter=/usr/bin/python3.9 ansible_user=martyni main_user=martyni
